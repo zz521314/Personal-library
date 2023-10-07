@@ -1,6 +1,10 @@
 /*
- * 日期：20230830
- * 功能：计算幸运数的个数
+ * @Author: zz
+ * @Date: 2023-10-07 14:27:54
+ * @LastEditors: zz 861692232@qq.com
+ * @LastEditTime: 2023-10-07 15:07:38
+ * @FilePath: \vscode\Personal-library\src\lucky_number.c
+ * @Description:计算幸运数的个数
  * 幸运数是波兰数学家乌拉姆命名的。它采用与生成素数类似的“筛法”生成。
  * 首先从1开始写出自然数1,2,3,4,5,6,…
  * 1 就是第一个幸运数。
@@ -24,48 +28,50 @@
  * 样例输出
  * 8
  *
+ * Copyright (c) 2023 by zz/861692232@qq.com, All Rights Reserved.
  */
+
 #include <stdio.h>
 #include <stdlib.h>
 
 int main()
-{	
-	int m,n,s,d,i,j,r;
-	scanf("%d%d",&m,&n);
-	if(m>=n || n>= 1000000)
+{
+	int m, n, s, d, i, j, r;
+	scanf("%d%d", &m, &n);
+	if (m >= n || n >= 1000000)
 	{
 		printf("请重新输入,第一个小于第二个数，并且第二个数小于1000000\n");
- 		return 0;
+		return 0;
 	}
-	int a[n/2+2];
-	int len=n/2+2;
-	int p=0;
-	for(i=1;i<len;i++)
-		a[i]=1+2*(i-1);
-	for(j=3;j<len;j++)
+
+	int a[n / 2 + 2];
+	int len = n / 2 + 2;
+	int p = 0;
+	for (i = 1; i < len; i++)
+		a[i] = 1 + 2 * (i - 1);
+	for (j = 3; j < len; j++)
 	{
-		r=j;
-		for(i=j;i<len;i++)
+		r = j;
+		for (i = j; i < len; i++)
 		{
-			if(i%a[j-1]!=0)
-				a[r++]=a[i];
+			if (i % a[j - 1] != 0)
+				a[r++] = a[i];
 		}
-		len=r;
+		len = r;
 	}
-	for(i=1;i<len;i++)
+	for (i = 1; i < len; i++)
 	{
-		if(a[i]>m&&p==0)
+		if (a[i] > m && p == 0)
 		{
-			s=i;
-			p=1;
+			s = i;
+			p = 1;
 		}
-		if(a[i]<n)
-			d=i;
-		if(a[i]>=n)	
+		if (a[i] < n)
+			d = i;
+		if (a[i] >= n)
 			break;
 	}
-	printf("%d",d-s+1);
+	printf("%d", d - s + 1);
 	printf("\n");
 	return 0;
-} 
-
+}
